@@ -19,7 +19,6 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
     "nodemon": "^2.0.22",
-    "path": "^0.12.7",
-    "socket.io": "^4.7.0"
+    "path": "^0.12.7"
   }
 }
