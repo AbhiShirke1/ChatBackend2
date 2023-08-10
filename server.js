@@ -6,6 +6,8 @@ const chatRoutes = require("./routes/chatRoutes")
 const connectDB = require('./config/db')
 const messageRoutes = require('./routes/messageRoutes')
 const { notFound, errorHandler} = require('./middleware/errorMiddleware')
+const cors = require('cors')
+const path = require('path')
 
 connectDB();
 const app = express();
@@ -14,12 +16,21 @@ app.get('/', (req, res)=>{
     res.send("API is running")
 })
 
+// app.use(cors({
+//     origin: 
+// }))
+
 app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes)
 app.use("/api/message", messageRoutes);
 
 app.use(notFound)
 app.use(errorHandler)
+app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.json(__dirname, '../frontend/build/index.html'))
+})
 
 const PORT = process.env.PORT || 5000;
 
